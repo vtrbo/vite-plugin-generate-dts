@@ -1,10 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "dev": "nodemon -w '../src/**/*.ts' -e .ts -x vite"
+    "dev": "cross-env DEBUG=vite-plugin-generate-dts:* vite --port 9999",
+    "build": "vite build"
   },
   "devDependencies": {
-    "vite": "^4.4.8",
+    "vite": "^4.4.9",
     "vite-plugin-inspect": "^0.7.35"
   }
 }
