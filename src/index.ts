@@ -11,7 +11,7 @@ function createVitePlugin(options?: Options): PluginOption {
     configResolved(config) {
       ctx.setViteConfig(config)
     },
-    configureServer(server) {
+    configureServer() {
       ctx.scanEnv()
     },
   }
