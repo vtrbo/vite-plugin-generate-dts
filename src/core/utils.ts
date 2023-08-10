@@ -1,10 +1,12 @@
 export function isLikeNumber(value?: string): boolean {
-  if (!value || value !== '0')
+  if (!value)
     return false
   return !Number.isNaN(+value!)
 }
 
 export function isLikeBoolean(value?: string): boolean {
+  if (!value)
+    return false
   return value === 'true' || value === 'false'
 }
 
