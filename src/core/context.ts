@@ -2,7 +2,9 @@ import type fs from 'node:fs'
 import type { ResolvedConfig, ViteDevServer } from 'vite'
 import fg from 'fast-glob'
 import createDebugger from 'debug'
+import { readFileSync } from 'fs-extra'
 import type { Options, ResolvedOptions } from '../types'
+import { parseEnv } from './env'
 import { resolveOptions } from './options'
 import { VITE_PLUGIN_NAME } from './constant'
 
@@ -32,7 +34,10 @@ export class Context {
   generate() {
     if (this._generated)
       return
+    this.scanEnv()
+  }
 
+  scanEnv() {
     const { env } = this.options
     if (env.dts) {
       const envFiles = fg.sync(env.includes, {
@@ -41,6 +46,13 @@ export class Context {
         cwd: this.config.root,
       })
       debug('envFiles =>', envFiles)
+      envFiles.map((path) => {
+        const content = readFileSync(path, 'utf-8')
+        debug('content =>', content)
+        const envMap = parseEnv(content)
+        debug('envMap =>', envMap)
+        return ''
+      })
     }
   }
 

@@ -1,12 +1,19 @@
-import path from 'node:path'
-import { ensureFileSync, readFileSync } from 'fs-extra'
-
-export function generateEnvDts(root: string, dts: string) {
-  const envDtsPath = path.resolve(root, dts)
-  ensureFileSync(envDtsPath)
-  const code = readFileSync(envDtsPath, 'utf-8')
+export function isLikeNumber(value?: string): boolean {
+  if (!value || value !== '0')
+    return false
+  return !Number.isNaN(+value!)
 }
 
-export function parseEnvDts() {
+export function isLikeBoolean(value?: string): boolean {
+  return value === 'true' || value === 'false'
+}
 
+export function getLikeType(value: string) {
+  if (isLikeNumber(value))
+    return 'number'
+
+  if (isLikeBoolean(value))
+    return 'boolean'
+
+  return 'string'
 }
