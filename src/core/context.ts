@@ -1,6 +1,6 @@
+import { readFileSync } from 'node:fs'
 import type { ResolvedConfig } from 'vite'
 import fg from 'fast-glob'
-import { readFileSync } from 'fs-extra'
 import type { Options, ResolvedOptions } from '../types'
 import type { Env } from './env'
 import { generateEnv, parseEnv } from './env'
