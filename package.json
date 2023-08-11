@@ -1,5 +1,6 @@
 {
   "name": "vite-plugin-generate-dts",
+  "type": "module",
   "version": "0.0.1",
   "description": "Victor Bo's Unplugin Template.",
   "license": "MIT",
